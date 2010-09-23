@@ -1,0 +1,69 @@
+= WURFL Client
+
+WURFL Client is a library to do WURFL (http://wurfl.sourceforge.net/) mobile device detection for web applications. 
+Included are tools to keep the WURFL file up to date automatically and to prepare a customized lookup tables, which 
+allow a fast device detection.
+
+== Mode of Operation
+The complete WURFL file is as big as ~16MB. A simple device detection against it in Ruby took 12 seconds, which is 
+inaceptable even for the first request of any client. 
+
+There are three optimizations to make the detection work faster:
+1.) Client devices are roughly detected by type (e.g. iPhone like, Nokia devices, etc.)
+2.) The WURFL file is customized to remove unused capabilities, reducing it's size considerably. (TERA-WURFL idea)
+3.) The WURFL Client prepares lookup tables for the roughly detected device types in a Ruby PStore data structure, so Ruby 
+doesn't have to parse XML files on each request. 
+
+The lookup tables are prepared during the WURFL update task, which takes quite some time. But this allows for a 
+very fast and for our appliances also accurate recognition. 
+
+The WURFL Client can then be implemented f.i. as a thin Rack service, see Examples.
+
+== Requirements
+
+Ruby 1.9: (.ord!) -> http://gist.github.com/251465
+wurfl gem (http://github.com/pwim/wurfl): Handset, UserAgentMatcher, WURFL Loader
+
+== Installation
+
+TODO: sudo gem install wurfl_client
+
+== Setup
+
+TODO: preparation, rake tasks
+
+== Examples
+
+TODO: rack application
+
+== Authors
+
+* Guido Pinkas (Original Author)
+
+== Contribution
+
+All contribution is welcome. Please use the github tools here on http://github.com/.
+
+== License
+
+The MIT License
+
+Copyright (c) 2010 Binder Trittenwein Kommunikation GmbH (http://www.bindertrittenwein.com/)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
