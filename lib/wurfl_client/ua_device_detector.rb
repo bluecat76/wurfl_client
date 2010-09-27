@@ -37,27 +37,27 @@ module WurflClient
           prefix += "_#{os_ver[$1]}" if os_ver
           return DeviceProfile.mobile(prefix)
         when /Symbian ?OS/
-          return DeviceProfile.new(:mobile, 'mozilla_symbian')
+          return DeviceProfile.mobile('mozilla_symbian')
         when /PalmOS/
-          return DeviceProfile.new(:mobile, 'mozilla_palm')
+          return DeviceProfile.mobile('mozilla_palm')
         when /Motorola/
-          return DeviceProfile.new(:mobile, 'mozilla_motorola')
+          return DeviceProfile.mobile('mozilla_motorola')
         when /MIDP-[0-9\.]/
           prefix = 'mozilla_' + ua_string[/MIDP-[0-9\.]+/]
-          return DeviceProfile.new(:mobile, prefix)
+          return DeviceProfile.mobile(prefix)
         when /phone/i
-          return DeviceProfile.new(:mobile, 'mozilla_phone')
+          return DeviceProfile.mobile('mozilla_phone')
         when /mobile/i
-          return DeviceProfile.new(:mobile, 'mozilla_mobile')
+          return DeviceProfile.mobile('mozilla_mobile')
         else # other mozilla is considered desktop
-          return DeviceProfile.new(:desktop, nil)
+          return DeviceProfile.desktop
         end
       end
     end
     
     def self.detectGeneric(ua_string)
       # TODO: detect desktop vs. mobile here!
-      return DeviceProfile.new(:mobile, ua_string[/^[0-9a-zA-z_\.\-]+/])
+      return DeviceProfile.mobile(ua_string[/^[0-9a-zA-z_\.\-]+/])
     end
 
   end
