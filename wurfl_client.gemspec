@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "lib/wurfl_client/lookup_preparer.rb",
      "lib/wurfl_client/ua_device_detector.rb",
      "lib/wurfl_client/wurfl_client.rb",
+     "test/device_profile_test.rb",
      "wurfl_client.gemspec"
   ]
   s.homepage = %q{http://github.com/bluecat76/wurfl_client}
@@ -35,6 +36,12 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Fast WURFL mobile device detection}
+  s.test_files = [
+    "test/lookup_helper_test.rb",
+     "test/device_profile_test.rb",
+     "test/wurfl_client_test.rb",
+     "test/ua_device_detector_test.rb"
+  ]
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
