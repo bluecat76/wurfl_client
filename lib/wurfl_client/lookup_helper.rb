@@ -4,6 +4,7 @@ require "pstore"
 
 module WurflClient
 
+  # This class is used to generate paths to the lookup files
   class LookupHelper
     def self.encodeFilename(str)
       str.gsub(/[^a-zA-Z0-9_\.\-]/n) {|s| sprintf('%%%02x', s[0].ord) }

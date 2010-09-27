@@ -1,20 +1,22 @@
 module WurflClient
 
+  # DeviceProfile stores "device context" information (desktop or mobile) 
+  # and the "lookup prefix" used to find the correct lookup file
   class DeviceProfile
     attr_reader :context
     attr_reader :lookup_prefix
 
     def initialize(context, lookup_prefix)
-      @context = context # like "desktop|mobile"
+      @context = context # like "desktop, mobile, iphone, etc"
       @lookup_prefix = lookup_prefix
     end
     
-    def mobile(lookup_prefix)
-      self.new(:mobile, lookup_prefix)
+    def self.mobile(lookup_prefix)
+      DeviceProfile.new(:mobile, lookup_prefix)
     end
     
-    def desktop
-      self.new(:desktop, nil)
+    def self.desktop
+      DeviceProfile.new(:desktop, nil)
     end
     
     def mobile?

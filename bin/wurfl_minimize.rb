@@ -2,6 +2,9 @@
 require "xml"
 require "yaml"
 
+# use this program to minimize the WURFL XML file, so it contains only capabilities you need.
+# This can reduce the lookup store size considerably!
+
 default_config = {
   'input_file' => 'wurfl-test.xml',
   'output_file' => 'wurfl-default.xml',

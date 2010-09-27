@@ -2,6 +2,7 @@ require "wurfl_client/device_profile"
 
 module WurflClient
   
+  # This class is used to determine a rough device profile from the given UserAgent string
   class UserAgentDeviceDetector
   
     def self.detect(ua_string)

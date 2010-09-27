@@ -1,4 +1,7 @@
 #!/usr/bin/env ruby
+
+# use this program to generate lookup tables from the input WURFL XML file
+
 require "wurfl_client/lookup_preparer"
 require "yaml"
 

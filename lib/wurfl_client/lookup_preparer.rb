@@ -5,6 +5,8 @@ require "pstore"
 
 module WurflClient
 
+  # This class is used to prepare lookup tables for fast device recognition.
+  # The information is collected from the given WURFL XML file
   class LookupPreparer
     
     def initialize(set_config)

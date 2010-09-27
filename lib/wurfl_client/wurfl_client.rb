@@ -5,10 +5,12 @@ require "wurfl/user_agent_matcher"
 module WurflClient
   @@lookup_base_path = 'lookup/'
   
+  # change the path to the previously generated lookup files
   def self.setLookupBasePath(lookup_base_path)
     @@lookup_base_path = lookup_base_path
   end
   
+  # main function to detect devices
   def self.detectMobileDevice(user_agent)
     profile = UserAgentDeviceDetector.detect(user_agent)
     if profile.mobile?

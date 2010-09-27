@@ -19,6 +19,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".gitignore",
      "README",
+     "Rakefile",
      "VERSION",
      "bin/prepare_lookup.rb",
      "bin/wurfl_minimize.rb",
@@ -26,7 +27,8 @@ Gem::Specification.new do |s|
      "lib/wurfl_client/lookup_helper.rb",
      "lib/wurfl_client/lookup_preparer.rb",
      "lib/wurfl_client/ua_device_detector.rb",
-     "lib/wurfl_client/wurfl_client.rb"
+     "lib/wurfl_client/wurfl_client.rb",
+     "wurfl_client.gemspec"
   ]
   s.homepage = %q{http://github.com/bluecat76/wurfl_client}
   s.rdoc_options = ["--charset=UTF-8"]
