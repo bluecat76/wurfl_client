@@ -15,7 +15,7 @@ module WurflClient
     end
     
     def getStoreFilePath(lookup_prefix)
-      @lookup_base_path + LookupHelper.encodeFilename(lookup_prefix) + '.pstore'
+      File.join(@lookup_base_path, LookupHelper.encodeFilename(lookup_prefix) + '.pstore')
     end
 
     def loadLookupTable(profile)

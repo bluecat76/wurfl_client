@@ -30,12 +30,12 @@ module WurflClient
           os_ver = ua_string[/Nokia([a-zA-Z0-9\-\.]+)/]
           prefix = 'mozilla_nokia'
           prefix += "_#{os_ver[$1]}" if os_ver
-          return DeviceProfile.new(:mobile, prefix)
+          return DeviceProfile.mobile(prefix)
         when /Windows CE/
           os_ver = ua_string[/Windows CE; ([a-zA-Z0-9 \.]+)/]
           prefix = 'mozilla_wince'
           prefix += "_#{os_ver[$1]}" if os_ver
-          return DeviceProfile.new(:mobile, prefix)
+          return DeviceProfile.mobile(prefix)
         when /Symbian ?OS/
           return DeviceProfile.new(:mobile, 'mozilla_symbian')
         when /PalmOS/

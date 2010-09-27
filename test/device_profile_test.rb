@@ -1,6 +1,5 @@
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit'
-require 'shoulda'
 require 'wurfl_client/device_profile'
 
 class DeviceProfileTest < Test::Unit::TestCase
