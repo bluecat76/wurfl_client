@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require "wurfl_client/lookup_preparer"
 require "yaml"
 

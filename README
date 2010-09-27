@@ -5,14 +5,14 @@ Included are tools to keep the WURFL file up to date automatically and to prepar
 allow a fast device detection.
 
 == Mode of Operation
-The complete WURFL file is as big as ~16MB. A simple device detection against it in Ruby took 12 seconds, which is 
+The complete WURFL file is as big as ~16MB. A single device detection against it in Ruby took me 12 seconds, which is 
 inaceptable even for the first request of any client. 
 
 There are three optimizations to make the detection work faster:
-1.) Client devices are roughly detected by type (e.g. iPhone like, Nokia devices, etc.)
-2.) The WURFL file is customized to remove unused capabilities, reducing it's size considerably. (TERA-WURFL idea)
-3.) The WURFL Client prepares lookup tables for the roughly detected device types in a Ruby PStore data structure, so Ruby 
-doesn't have to parse XML files on each request. 
+1.) The WURFL file is customized to remove unused capabilities, reducing it's size considerably. (TERA-WURFL idea)
+2.) Client devices are roughly detected by type (e.g. iPhone like, Nokia devices, etc.)
+3.) The WURFL Client works with previously prepared lookup tables for the roughly detected device types 
+in a Ruby PStore data structure, so Ruby doesn't have to parse XML files on each request. 
 
 The lookup tables are prepared during the WURFL update task, which takes quite some time. But this allows for a 
 very fast and for our appliances also accurate recognition. 
