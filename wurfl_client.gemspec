@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{wurfl_client}
-  s.version = "0.5.1"
+  s.version = "0.5.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Guido Pinkas"]
@@ -23,12 +23,14 @@ Gem::Specification.new do |s|
      "VERSION",
      "bin/wurfl_minimize.rb",
      "bin/wurfl_prepare_lookup.rb",
+     "examples/config.ru",
      "lib/wurfl_client.rb",
      "lib/wurfl_client/device_profile.rb",
      "lib/wurfl_client/lookup_helper.rb",
      "lib/wurfl_client/lookup_preparer.rb",
      "lib/wurfl_client/ua_device_detector.rb",
      "test/data/iphone.pstore",
+     "test/data/wurfl-test.xml",
      "test/device_profile_test.rb",
      "test/lookup_helper_test.rb",
      "test/ua_device_detector_test.rb",
