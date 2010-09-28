@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{wurfl_client}
-  s.version = "0.5.0"
+  s.version = "0.5.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Guido Pinkas"]
-  s.date = %q{2010-09-27}
+  s.date = %q{2010-09-28}
   s.description = %q{WURFL Client is a library to do WURFL (http://wurfl.sourceforge.net/) mobile device detection for web applications. Included are tools to keep the WURFL file up to date automatically and to prepare a customized lookup tables, which allow a fast device detection.}
   s.email = %q{guido.pinkas@bindertrittenwein.com}
   s.executables = ["wurfl_minimize.rb", "wurfl_prepare_lookup.rb"]
@@ -23,11 +23,11 @@ Gem::Specification.new do |s|
      "VERSION",
      "bin/wurfl_minimize.rb",
      "bin/wurfl_prepare_lookup.rb",
+     "lib/wurfl_client.rb",
      "lib/wurfl_client/device_profile.rb",
      "lib/wurfl_client/lookup_helper.rb",
      "lib/wurfl_client/lookup_preparer.rb",
      "lib/wurfl_client/ua_device_detector.rb",
-     "lib/wurfl_client/wurfl_client.rb",
      "test/data/iphone.pstore",
      "test/device_profile_test.rb",
      "test/lookup_helper_test.rb",
@@ -52,12 +52,12 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<wurfl>, [">= 0"])
+      s.add_runtime_dependency(%q<wurfl>, [">= 1.3.6"])
     else
-      s.add_dependency(%q<wurfl>, [">= 0"])
+      s.add_dependency(%q<wurfl>, [">= 1.3.6"])
     end
   else
-    s.add_dependency(%q<wurfl>, [">= 0"])
+    s.add_dependency(%q<wurfl>, [">= 1.3.6"])
   end
 end
 

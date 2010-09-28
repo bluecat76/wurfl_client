@@ -17,7 +17,7 @@ begin
     gemspec.email = "guido.pinkas@bindertrittenwein.com"
     gemspec.homepage = "http://github.com/bluecat76/wurfl_client"
     gemspec.authors = ["Guido Pinkas"]
-    gemspec.add_dependency 'wurfl'
+    gemspec.add_dependency 'wurfl', '>=1.3.6'
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
