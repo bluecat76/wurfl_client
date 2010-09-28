@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wurfl>
+  <version>
+    <ver>Test Version</ver>
+  </version>
+  <devices>
+  <device id="generic" user_agent="" fall_back="root">
+    <group id="display">
+      <capability name="physical_screen_height" value="27"/>
+      <capability name="columns" value="11"/>
+      <capability name="physical_screen_width" value="27"/>
+      <capability name="rows" value="6"/>
+      <capability name="max_image_width" value="90"/>
+      <capability name="resolution_height" value="40"/>
+      <capability name="resolution_width" value="90"/>
+      <capability name="max_image_height" value="35"/>
+    </group>
+  </device>
+  <device id="generic_xhtml" user_agent="Mozz" fall_back="generic">
+    <group id="display">
+      <capability name="max_image_width" value="120"/>
+      <capability name="resolution_height" value="92"/>
+      <capability name="resolution_width" value="128"/>
+      <capability name="max_image_height" value="92"/>
+    </group>
+    <group id="product_info">
+      <capability name="mobile_browser" value="Safari"/>
+    </group>
+  </device>
+  <device id="apple_generic" user_agent="Mozilla/5.0 (iPhone;" fall_back="generic_xhtml">
+    <group id="display">
+      <capability name="columns" value="20"/>
+      <capability name="max_image_width" value="300"/>
+      <capability name="rows" value="20"/>
+      <capability name="resolution_width" value="300"/>
+      <capability name="resolution_height" value="300"/>
+      <capability name="max_image_height" value="300"/>
+    </group>
+  </device>
+  <device id="apple_iphone_ver1" user_agent="Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A538a Safari/419.3" fall_back="apple_generic" actual_device_root="true">
+    <group id="product_info">
+      <capability name="mobile_browser" value="Safari"/>
+      <capability name="pointing_method" value="touchscreen"/>
+      <capability name="model_name" value="iPhone"/>
+      <capability name="device_os_version" value="1.0"/>
+    </group>
+    <group id="display">
+      <capability name="physical_screen_height" value="74"/>
+      <capability name="dual_orientation" value="true"/>
+      <capability name="physical_screen_width" value="49"/>
+      <capability name="max_image_width" value="320"/>
+      <capability name="resolution_height" value="480"/>
+      <capability name="resolution_width" value="320"/>
+      <capability name="max_image_height" value="360"/>
+    </group>
+  </device>
+</devices>
+</wurfl>
