@@ -5,14 +5,14 @@
 
 Gem::Specification.new do |s|
   s.name = %q{wurfl_client}
-  s.version = "0.4.0"
+  s.version = "0.5.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Guido Pinkas"]
   s.date = %q{2010-09-27}
   s.description = %q{WURFL Client is a library to do WURFL (http://wurfl.sourceforge.net/) mobile device detection for web applications. Included are tools to keep the WURFL file up to date automatically and to prepare a customized lookup tables, which allow a fast device detection.}
   s.email = %q{guido.pinkas@bindertrittenwein.com}
-  s.executables = ["prepare_lookup.rb", "wurfl_minimize.rb"]
+  s.executables = ["wurfl_minimize.rb", "wurfl_prepare_lookup.rb"]
   s.extra_rdoc_files = [
     "README"
   ]
@@ -21,14 +21,18 @@ Gem::Specification.new do |s|
      "README",
      "Rakefile",
      "VERSION",
-     "bin/prepare_lookup.rb",
      "bin/wurfl_minimize.rb",
+     "bin/wurfl_prepare_lookup.rb",
      "lib/wurfl_client/device_profile.rb",
      "lib/wurfl_client/lookup_helper.rb",
      "lib/wurfl_client/lookup_preparer.rb",
      "lib/wurfl_client/ua_device_detector.rb",
      "lib/wurfl_client/wurfl_client.rb",
+     "test/data/iphone.pstore",
      "test/device_profile_test.rb",
+     "test/lookup_helper_test.rb",
+     "test/ua_device_detector_test.rb",
+     "test/wurfl_client_test.rb",
      "wurfl_client.gemspec"
   ]
   s.homepage = %q{http://github.com/bluecat76/wurfl_client}

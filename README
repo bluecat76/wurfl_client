@@ -22,45 +22,83 @@ The WURFL Client can then be implemented f.i. as a thin Rack service, see Exampl
 
 == Requirements
 
-Ruby 1.9: (.ord!) -> http://gist.github.com/251465
-wurfl gem (http://github.com/pwim/wurfl): Handset, UserAgentMatcher, WURFL Loader
+Ruby 1.9: (.ord!) -> Possibly integrate http://gist.github.com/251465 as a fix
+WURFL gem (http://github.com/pwim/wurfl): Handset, UserAgentMatcher, WURFL Loader
+
 
 == Installation
 
-sudo gem install wurfl_client
+    sudo gem install wurfl_client
+
 
 == Setup
 
 To setup the environment, you have to execute following steps:
 1.) download and extract the latest WURFL file
-* curl -L -o wurfl-latest.xml.gz 
-* gunzip wurfl-latest.xml.gz
+
+    curl -L -o wurfl-latest.xml.gz 
+    gunzip wurfl-latest.xml.gz
 
 2.) minimize the WURFL XML file. You can adapt wurfl_minimize.yml to your needs, see http://wurfl.sourceforge.net/help_doc.php for a list of available capabilities)
-* wurfl_minimize.rb 
 
+    wurfl_minimize.rb 
+ 
 3.) prepare the lookup tables (builds them into ./lookup directory by default). This will take some time!
-* lookup_prepare.rb 
+
+    lookup_prepare.rb 
 
 Now, you are ready for device detection. If you make an automated script to do this update regularly, you must not forget to clear the lookup directory first. 
 The preparation script doesn't overwrite files. For minimal effect on your running webservice, you should use another lookup directory there and copy the 
 new data after the update is complete. 
 
 Here is an example automatic update script:
-* #!/bin/sh
-* curl -L -o wurfl-latest.xml.gz 
-* gunzip wurfl-latest.xml.gz
-* wurfl_minimize.rb 
-* rm lookup/*
-* lookup_prepare.rb
-* cp lookup/* /path/to/production/lookup
+
+    #!/bin/sh
+    curl -L -o wurfl-latest.xml.gz 
+    gunzip wurfl-latest.xml.gz
+    wurfl_minimize.rb 
+    rm lookup/*
+    lookup_prepare.rb
+    cp lookup/* /path/to/production/lookup
+
 
 == Examples
 
-TODO: simple detection example
-TODO: rack application
+The device detection is as simple as this call:
 
-== Authors
+    require "wurfl_client"
+    
+    user_agent = 'Mozilla/5.0 (iPhone; U; CPU iPhone like Mac OS X; en-us)'
+    device = WurflClient::detectMobileDevice(user_agent)
+    
+    puts "DEVICE: #{hs["brand_name"]} #{hs["model_name"]}"
+    
+You can easily put the WURFL detection into a Rack (http://rack.rubyforge.org/) middleware. 
+Using following 'config.ru', you can put this online using 'rackup':
+
+    require "wurfl_client"
+
+    class RackInterface
+  
+      def call(env)
+        user_agent = env["HTTP_USER_AGENT"]
+        
+        hs = WurflClient.detectMobileDevice(user_agent)
+        hsinfo = flash.collect { |k, v| "#{k}: #{v};" }.join
+  
+        [200, {"Content-Type" => "text/plain"}, ["#{hsinfo}"] ]
+      end
+  
+    end
+
+    run RackInterface.new
+
+  
+This can be further extended by a caching mechanism to reduce the server load. Being a Rack layer, it should 
+also be possible to integrate this into a rails app. If you know, how to do so, I would really appreciate your 
+contribution.
+
+== Author
 
 * Guido Pinkas (Original Author)
 

@@ -1,6 +1,6 @@
 $LOAD_PATH << File.join(File.dirname(__FILE__), '..', 'lib')
 require 'test/unit'
-require 'wurfl_client/wurfl_client'
+require 'wurfl_client'
 
 class WurflClientTest < Test::Unit::TestCase
   def setup
