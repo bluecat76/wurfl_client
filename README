@@ -22,7 +22,7 @@ The WURFL Client can then be implemented f.i. as a thin Rack service, see Exampl
 
 == Requirements
 
-Ruby 1.9: (.ord!) -> Possibly integrate http://gist.github.com/251465 as a fix
+Ruby Version supporting String.ord -> Possibly integrate http://gist.github.com/251465 as a fix
 WURFL gem (http://github.com/pwim/wurfl): Handset, UserAgentMatcher, WURFL Loader
 
 
@@ -45,7 +45,7 @@ To setup the environment, you have to execute following steps:
  
 3.) prepare the lookup tables (builds them into ./lookup directory by default). This will take some time!
 
-    lookup_prepare.rb 
+    wurfl_prepare_lookup.rb 
 
 Now, you are ready for device detection. If you make an automated script to do this update regularly, you must not forget to clear the lookup directory first. 
 The preparation script doesn't overwrite files. For minimal effect on your running webservice, you should use another lookup directory there and copy the 
@@ -58,7 +58,7 @@ Here is an example automatic update script:
     gunzip wurfl-latest.xml.gz
     wurfl_minimize.rb 
     rm lookup/*
-    lookup_prepare.rb
+    wurfl_prepare_lookup.rb
     cp lookup/* /path/to/production/lookup
 
 
@@ -73,27 +73,39 @@ The device detection is as simple as this call:
     
     puts "DEVICE: #{hs["brand_name"]} #{hs["model_name"]}"
     
-You can easily put the WURFL detection into a Rack (http://rack.rubyforge.org/) middleware. 
-Using following 'config.ru', you can put this online using 'rackup':
+You can easily put the WURFL detection into a Rack (http://rack.rubyforge.org/) middleware. I chose to output the data in JSON format. 
+Using following 'config.ru', you can put this online using 'rackup'. 
 
     require "wurfl_client"
 
     class RackInterface
-  
+    
+      def getJSON(handset)
+        result = %Q{"WURFL-Client":1}
+        if handset
+          handset.keys.each do |key|
+            result << %Q{,"#{key}":"#{handset[key]}"}
+          end
+        end
+        "{#{result}}"
+      end
+    
       def call(env)
         user_agent = env["HTTP_USER_AGENT"]
         
         hs = WurflClient.detectMobileDevice(user_agent)
-        hsinfo = flash.collect { |k, v| "#{k}: #{v};" }.join
-  
-        [200, {"Content-Type" => "text/plain"}, ["#{hsinfo}"] ]
+    
+        [200, {"Content-Type" => "text/javascript"}, ["#{getJSON(hs)}"] ]
       end
-  
+    
     end
-
+    
     run RackInterface.new
 
-  
+Test by opening f.i. http://localhost:9292/. You should see the response
+    {"WURFL-Client":1}
+
+You can get results for mobile devices by using the UserAgentSwitcher Firefox extension (http://chrispederick.com/work/user-agent-switcher/).
 This can be further extended by a caching mechanism to reduce the server load. Being a Rack layer, it should 
 also be possible to integrate this into a rails app. If you know, how to do so, I would really appreciate your 
 contribution.
