@@ -6,20 +6,28 @@ module WurflClient
   class UserAgentDeviceDetector
   
     def self.detect(ua_string)
-      detectIphone(ua_string) || detectOtherMozilla(ua_string) || detectGeneric(ua_string) || DeviceProfile.new(:desktop)
+      detectAppleDevices(ua_string) || detectOtherMozilla(ua_string) || detectGeneric(ua_string) || DeviceProfile.new(:desktop)
     end
 
-    private
-    
-    def self.detectIphone(ua_string)
+    def self.detectAppleDevices(ua_string)
+    	dev_context = nil
+    	prefix = ''
       case ua_string
+      when /iPad/
+      	dev_context = 'ipad'
+      	prefix = 'ipad'
       when /iPod/
-        return DeviceProfile.new('iphone', 'iphone_ipod')
+      	dev_context = 'iphone'
+      	prefix = 'ipod'
       when /iPhone/
+      	dev_context = 'iphone'
+      	prefix = 'iphone'
+			end
+			if dev_context
+				# detect OS version
         os_ver = ua_string[/OS ([0-9_]+)/]
-        prefix = 'iphone'
-        prefix += "_#{os_ver[$1]}" if os_ver
-        return DeviceProfile.new('iphone', prefix)
+        prefix += "-OS#{os_ver[$1]}" if os_ver
+				return DeviceProfile.new(dev_context, prefix)
       end
     end
     

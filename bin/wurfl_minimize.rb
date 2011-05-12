@@ -6,7 +6,7 @@ require "yaml"
 # This can reduce the lookup store size considerably!
 
 default_config = {
-  'input_file' => 'wurfl-test.xml',
+  'input_file' => 'wurfl-latest.xml',
   'output_file' => 'wurfl-default.xml',
   'capabilities' => ['brand_name', 'model_name', 'max_image_width', 'max_image_height', 'wta_voice_call']
 }
