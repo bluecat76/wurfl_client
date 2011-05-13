@@ -19,11 +19,16 @@ module WurflClient
       handsets = lookup.loadLookupTable(profile)
       
       if handsets
-        # TODO: load complete table as fallback!
         uam = Wurfl::UserAgentMatcher.new(handsets)
 
         # return first matching entry
-        uam.match_handsets(user_agent).flatten.first
+        hs = uam.match_handsets(user_agent).flatten.first
+        if hs.class == Wurfl::Handset
+        	hs["profile"] = profile.context
+        end
+        hs
+      else
+        # TODO: load complete table as fallback!
       end
     end
   end

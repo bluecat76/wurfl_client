@@ -25,7 +25,7 @@ module WurflClient
 			end
 			if dev_context
 				# detect OS version
-        os_ver = ua_string[/OS ([0-9_]+)/]
+        os_ver = ua_string[/OS ([0-9]+)/]
         prefix += "-OS#{os_ver[$1]}" if os_ver
 				return DeviceProfile.new(dev_context, prefix)
       end
