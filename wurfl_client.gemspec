@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{wurfl_client}
-  s.version = "0.5.4"
+  s.version = "0.6.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = [%q{Guido Pinkas}]
-  s.date = %q{2011-05-12}
+  s.date = %q{2011-05-13}
   s.description = %q{WURFL Client is a library to do WURFL (http://wurfl.sourceforge.net/) mobile device detection for web applications. Included are tools to keep the WURFL file up to date automatically and to prepare a customized lookup tables, which allow a fast device detection.}
   s.email = %q{guido.pinkas@bindertrittenwein.com}
   s.executables = [%q{wurfl_minimize.rb}, %q{wurfl_prepare_lookup.rb}]
